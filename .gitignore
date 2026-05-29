@@ -1,0 +1,20 @@
+# Python virtual environment
+.venv/
+
+# DuckDB database
+*.duckdb
+
+# Mac system files
+.DS_Store
+
+# Raw data — too large for GitHub
+data/raw/
+
+# Processed predictions — too large for GitHub
+data/processed/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# DuckDB files (too large for GitHub)
+*.duckdb
