@@ -28,12 +28,7 @@ def load_model():
         encoders = pickle.load(f)
     return model, explainer, encoders
 
-@st.cache_data
-def load_data():
-    return pd.read_csv("data/processed/provider_predictions.csv")
-
 model, explainer, encoders = load_model()
-df = load_data()
 
 # ── Pre-computed summary stats ───────────────────────────────
 TOTAL_SPEND_B      = 226.74
