@@ -69,7 +69,10 @@ STATE_DATA = pd.DataFrame({
                              6264,5922,5660,5191,4834,4686,4398,4167,4104,3992],
     "region": ["West","Northeast","South","South","Northeast","Midwest","South",
                 "Midwest","Midwest","South","Northeast","Northeast","South",
-                "Midwest","Midwest","South","South","South","West","South"]
+                "Midwest","Midwest","South","South","South","West","South"],
+    "spend_per_prescriber": [186553,229292,215629,208223,212515,201719,215942,
+                              205360,178483,236227,209479,187792,228253,230949,
+                              222331,171570,290142,222146,166404,239198]
 })
 
 # ── Sidebar ──────────────────────────────────────────────────
@@ -376,12 +379,7 @@ elif page == "🗺️ State Intelligence Map":
 
     with col_b:
         st.subheader("Top 10 States — Spend per Prescriber")
-        top10 = STATE_DATA.copy()
-        prescribers = np.array([113975,79262,78092,75623,52365,44830,37687,38086,42228,30920])
-        top10["spend_per_prescriber"] = (
-            top10["total_cost_millions"].values * 1_000_000 / prescribers
-        ).round(0)
-        top10 = top10.sort_values("spend_per_prescriber", ascending=False).head(10)
+        top10 = STATE_DATA.sort_values("spend_per_prescriber", ascending=False).head(10)
         fig_spp = px.bar(top10, x="state", y="spend_per_prescriber",
                          color="region",
                          title="Avg Medicare Drug Spend Per Prescriber by State",
