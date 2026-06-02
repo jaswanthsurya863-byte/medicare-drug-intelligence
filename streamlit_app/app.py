@@ -377,9 +377,9 @@ elif page == "🗺️ State Intelligence Map":
     with col_b:
         st.subheader("Top 10 States — Spend per Prescriber")
         top10 = STATE_DATA.copy()
+        prescribers = np.array([113975,79262,78092,75623,52365,44830,37687,38086,42228,30920])
         top10["spend_per_prescriber"] = (
-            top10["total_cost_millions"] * 1_000_000 /
-            [113975,79262,78092,75623,52365,44830,37687,38086,42228,30920]
+            top10["total_cost_millions"].values * 1_000_000 / prescribers
         ).round(0)
         top10 = top10.sort_values("spend_per_prescriber", ascending=False).head(10)
         fig_spp = px.bar(top10, x="state", y="spend_per_prescriber",
